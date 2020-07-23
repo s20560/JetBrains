@@ -100,19 +100,13 @@ public class Main {
             int m;
             System.out.print("Enter the coordinate: ");
             try {
-                n = sc.nextInt() - 1;
-                m = sc.nextInt() - 1;
+                n = sc.nextInt();
+                m = sc.nextInt();
 
-                if (n == 2) {
-                    n = 0;
-                } else if (n == 0) {
-                    n = 2;
-                }
-
-                if (board[n][m] != ' ') {
+                if (board[3-m][n-1] != ' ') {
                     System.out.println("This cell is occupied! Choose another one!");
                 } else {
-                    board[n][m] = symbol;
+                    board[3-m][n-1] = symbol;
                     isFilled = true;
                 }
             } catch (InputMismatchException e) {
