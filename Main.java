@@ -92,9 +92,8 @@ public class Main {
 
     }
 
-    private static void fill(char[][] board,char symbol) {
+    private static void fill(char[][] board, char symbol) {
         Scanner sc = new Scanner(System.in);
-        int moveCounter= 0;
         boolean isFilled = false;
         while (!isFilled) {
             int n;
