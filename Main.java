@@ -47,7 +47,6 @@ public class Main {
             }
         }
         Scanner scanner = new Scanner(System.in);
-        polysyllables +=3;
 
         charactersInText += sentencesInText - 1;
         System.out.println(text);
