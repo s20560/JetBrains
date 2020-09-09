@@ -1,22 +1,20 @@
-package phonebook;
+package flashcards;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        long start = System.currentTimeMillis();
-        String[] find = ReadFiles.ReadFind();
-        String[] directory = ReadFiles.ReadDirectory();
-        long timeToLoad = System.currentTimeMillis() - start;
+    public static void main(String[] args) {
 
-        long linearStart = System.currentTimeMillis();
-        LinearSearch.linearSearch(directory, find, timeToLoad);
-        long linearStop = System.currentTimeMillis() - linearStart;
-        System.out.println();
+        String importFile = "";
+        String exportFile = "";
 
-        long jumpStart = System.currentTimeMillis();
-        JumpSearch.performJumpSearch(directory,find,timeToLoad - linearStop);
-        long jumpStop = System.currentTimeMillis() - jumpStart;
+        for (int i = 0; i < args.length; i++) {
+            if (args[i].equals("-import")){
+                importFile = args[i + 1];
+            } else if (args[i].equals("-export")) {
+                exportFile = args[i + 1];
+            }
+        }
 
-        binarySearch.performBinarySearch(directory,find,timeToLoad);
-
+        Console console = new Console();
+        console.openConsole(importFile, exportFile);
     }
 }
