@@ -1,22 +1,20 @@
-package phonebook;
+package contacts;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        long start = System.currentTimeMillis();
-        String[] find = ReadFiles.ReadFind();
-        String[] directory = ReadFiles.ReadDirectory();
-        long timeToLoad = System.currentTimeMillis() - start;
+    public static void main(String[] args) {
+        String fileName = "contacts.data";
+        ArrayList<Contact> loadedPhoneBook = new ArrayList<>();
+        try {
+            loadedPhoneBook = (ArrayList<Contact>) SerializationUtils.deserialize(fileName);
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        phoneBook.setBook(loadedPhoneBook);
 
-        long linearStart = System.currentTimeMillis();
-        LinearSearch.linearSearch(directory, find, timeToLoad);
-        long linearStop = System.currentTimeMillis() - linearStart;
-        System.out.println();
-
-        long jumpStart = System.currentTimeMillis();
-        JumpSearch.performJumpSearch(directory,find,timeToLoad - linearStop);
-        long jumpStop = System.currentTimeMillis() - jumpStart;
-
-        binarySearch.performBinarySearch(directory,find,timeToLoad);
-
+        Menu menu = new Menu();
+        menu.openMenu(fileName);
     }
 }
